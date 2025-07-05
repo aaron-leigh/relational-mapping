@@ -1,0 +1,162 @@
+/* CSS files add styling rules to your content */
+
+.on-top {
+  z-index: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.fullscreen {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+#start-screen {
+  background: black;
+  display: grid;
+}
+
+#btn-start {
+  background-color: black;
+  color: white;
+  font-family: "Retail-Italic", sans-serif;
+  border: none;
+  font-size: 1.2vw;
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "Retail-Regular";
+  src: url("assets/RetailText-Thin.otf");
+}
+
+@font-face {
+  font-family: "Retail-Italic";
+  src: url("assets/RetailText-ThinItalic.otf");
+}
+
+@font-face {
+  font-family: "Retail-Bold";
+  src: url("assets/RetailText-Semibold.otf");
+}
+
+@font-face {
+  font-family: "Retail-Bold-Display";
+  src: url("RetailDisplay-Semibold.otf");
+}
+
+body {
+  font-family: "Retail", sans-serif;
+}
+
+.text-container {
+  margin: 28vw;
+}
+
+p {
+  color: white;
+  line-height: 1.1;
+  text-align: left;
+  text-align-last: left;
+  font-family: "Retail-Regular", sans-serif;
+}
+
+p b {
+  color: white;
+  font-family: "Retail-Bold", sans-serif;
+}
+
+p i {
+  color: white;
+  font-family: "Retail-Italic", sans-serif;
+}
+
+p strong {
+  color: white;
+  font-family: "Retail-Bold-Display", sans-serif;
+  font-size: 2.5vw;
+  opacity: 1;
+  line-height: 1.5;
+}
+
+.split-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+.left-column {
+  position: relative;
+  height: 50%;
+  padding-top: 12vh;
+  padding-bottom: 0vh;
+  padding-left: 6vw;
+  padding-right: 52vw;
+  font-size: 1.2vw;
+}
+
+.right-column {
+  position: relative;
+  height: 50%;
+  padding-top: 20vh;
+  padding-bottom: 12vh;
+  padding-left: 71vw;
+  padding-right: 6vw;
+  font-size: 1.2vw;
+}
+
+.centered {
+  text-align: center;
+}
+
+.left-column strong {
+  opacity: 1 !important;
+}
+
+.transparency {
+  opacity: 0.7;
+}
+
+/* @media screen and (max-height: 768px) {
+
+  .split-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+.left-column {
+  height: 50%;
+  padding-top: 12vh;
+    padding-bottom: 0vh;
+    padding-left: 6vw;
+  padding-right: 52vw;
+      font-size: 2vh;
+
+}
+
+.right-column {
+    height: 50%;
+  padding-top: 20vh;
+    padding-bottom: 12vh;
+    padding-left: 72vw;
+  padding-right: 5vw;
+    font-size: 2vh;
+}
+
+.centered {
+  text-align: center;
+}
+
+.left-column strong {
+  opacity: 1 !important;
+}
+
+.transparency {
+  opacity: 0.7
+}
+  
+  
+} */

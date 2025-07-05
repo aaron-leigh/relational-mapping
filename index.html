@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Relational Mapping</title>
+    <meta name="description" content="Relational Map" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-orbit-controls@1.3.0/dist/aframe-orbit-controls.min.js"></script>
+    <script src="project-cubes.js"></script>
+    <script src="update-camera.js"></script>
+    <script src="update-target.js"></script>
+    <script src="aframe-env-map-component.js"></script>
+    <script src="aframe-hdr-environment.js"></script>
+    <script src="RGBELoader.js"></script>
+    <script src="https://unpkg.com/aframe-image-portal@latest"></script>
+  </head>
+
+<body>
+  <div id="start-screen" class="on-top fullscreen">
+
+    <div class="split-screen">
+        <div class="left-column">
+          <p>
+                   <strong>Relational Mapping</strong><br>           
+          </p>
+      <p class="transparency">
+        Exploring Glasgow as a case study, <i>Relational Mapping</i> considers how the visual language of mapping can express relationships overlooked by a solely geographical focus. When traversing urban spaces, particular materials appear repeatedly in different social, political, and historical contexts, forming both the literal and metaphorical ‘fabric’ of the city. By treating these materials as a lens through which to explore and organise the urban environment, <i>Relational Mapping</i> highlights the temporal and socio-political relationships inseparable from these spaces.
+      </p>
+      </div>
+        <div class="right-column">
+      <p>
+        <b>Click a material</b> to travel to its location.<br>
+<b>Click and drag</b> to explore each map.<br>
+<b>Scroll</b> to adjust viewing distance.<br>
+          </p>
+          <p>
+        <b>Click ‘Explore the Maps’</b>, then <b>click the ‘VR’ button</b> and <b>wear headphones</b> for an immersive experience.
+              </p>
+ 
+      <button id="btn-start">→ Explore the Maps</button>
+               </div>
+    </div>
+  </div>
+  
+
+    <a-scene
+      cursor="rayOrigin: mouse"
+      renderer="sortObjects: true"
+      light="defaultLightsEnabled: false"
+      hdr-environment="assets/venice_sunset_1k.hdr; showBackground: false; showGround: false; groundSize: 15"
+      loading-screen="dotsColor: white; backgroundColor: black"
+      camera="fov: 50"
+    >
+      <a-assets>
+        <audio
+          id="polyster-sample"
+          src="assets/Polyester_1.mp3"
+        ></audio>
+        <audio
+          id="copper-sample"
+          src="assets/Copper_1.mp3"
+        ></audio>
+                <audio
+          id="iron-sample"
+          src="assets/Iron_1.mp3"
+        ></audio>
+                        <audio
+          id="clay-sample"
+          src="assets/Clay_1.mp3"
+        ></audio>
+                                <audio
+          id="petrol-sample"
+          src="assets/Petrol_1.mp3"
+        ></audio>
+                                        <audio
+          id="steel-sample"
+          src="assets/Steel_1.mp3"
+        ></audio>
+                                                <audio
+          id="granite-sample"
+          src="assets/Granite_1.mp3"
+        ></audio>
+                                                        <audio
+          id="spray-paint-sample"
+          src="assets/Spray_Paint_1.mp3"
+        ></audio>
+                                                                <audio
+          id="concrete-sample"
+          src="assets/Concrete_1.mp3"
+        ></audio>
+                                                                        <audio
+          id="sandstone-sample"
+          src="assets/Sandstone_1.mp3"
+        ></audio>
+
+        <a-asset-item
+          id="copper-model"
+          src="assets/Copper.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="spray-paint-model"
+          src="assets/Spray_Paint.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="polyester-model"
+          src="assets/Polyester.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="iron-model"
+          src="assets/Iron.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="clay-model"
+          src="assets/Clay.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="concrete-model"
+          src="assets/Concrete.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="granite-model"
+          src="assets/Granite.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="petrol-model"
+          src="assets/Petrol.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="sandstone-model"
+          src="assets/Sandstone.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="steel-model"
+          src="assets/Steel.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="copper-portal"
+          src="assets/Copper_Portal.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="spray-paint-portal"
+          src="assets/Spray_Paint_Portal.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="polyester-portal"
+          src="assets/Polyester_Portal.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="iron-portal"
+          src="assets/Iron_Portal.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="clay-portal"
+          src="assets/Clay_Portal.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="concrete-portal"
+          src="assets/Concrete_Portal.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="granite-portal"
+          src="assets/Granite_Portal.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="petrol-portal"
+          src="assets/Petrol_Portal.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="sandstone-portal"
+          src="assets/Sandstone_Portal.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="steel-portal"
+          src="assets/Steel_Portal.glb"
+        ></a-asset-item>
+      </a-assets>
+
+      <a-entity
+        id="mouseCursor"
+        cursor="rayOrigin: mouse"
+        raycaster="objects: .clickable"
+      ></a-entity>
+      <a-entity id="projectsCubes" project-cubes></a-entity>
+
+      <a-entity
+        id="orbitcam"
+        camera
+        orbit-controls="initialPosition: 7 0 6"
+      ></a-entity>
+      <a-entity id="camrig"> </a-entity>
+      <a-entity
+        id="null-cam"
+        visible="false"
+        position
+        geometry="primitive: octahedron"
+        update-camera
+        animation="property: position; startEvents: camjump; dur: 4000"
+      ></a-entity>
+      <a-entity
+        id="null-target"
+        visible="false"
+        position
+        geometry="primitive: tetrahedron"
+        update-target
+        animation="property: position; startEvents: camjump; dur: 4000"
+      ></a-entity>
+
+      <a-entity
+        image-portal="src: #copper-portal"
+        position="5.5 3 11.5"
+        rotation="0 0 0"
+        scale="1.8 1.8 1.8"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#copper-model"
+        position="5.5 2.92 11.5"
+        animation="property: rotation; to: 0 360 0 ; loop: true; easing: linear; dur: 80000"
+        scale="0.42 0.42 0.42"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="copper-sound"
+        position="5.5 3 11.5"
+        sound="src: #copper-sample;
+        volume: 3;
+        autoplay: true;
+        delay: 6000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <a-entity
+        image-portal="src: #spray-paint-portal"
+        position="4 3 -2.7"
+        rotation="0 0 0"
+        scale="1.8 1.8 1.8"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#spray-paint-model"
+        position="4 2.92 -2.5"
+        animation="property: rotation; to: 0 360 0 ; loop: true; easing: linear; dur: 80000"
+        scale="5 5 5"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="spray-paint-sound"
+        position="4 3 -2.5"
+        sound="src: #spray-paint-sample;
+        volume: 1;
+        autoplay: true;
+                       delay: 12000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <a-entity
+        image-portal="src: #polyester-portal"
+        position="-4 3 -2.5"
+        rotation="0 0 0"
+        scale="1.85 1.85 1.85"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#polyester-model"
+        position="-4 2.45 -2.5"
+        animation="property: rotation; to: 0 360 0 ; loop: true; easing: linear; dur: 80000"
+        scale="0.4 0.4 0.4"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="polyester-sound"
+        position="-4 3 -2.5"
+        sound="src: #polyster-sample;
+        volume: 3;
+        autoplay: true;
+                       delay: 18000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <a-entity
+        image-portal="src: #iron-portal"
+        position="-10 3 -8"
+        rotation="0 0 0"
+        scale="1.8 1.8 1.8"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#iron-model"
+        position="-10 3 -8"
+        animation="property: rotation; to: 0 360 45 ; loop: true; easing: linear; dur: 80000"
+        rotation="0 0 45"
+        scale="0.42 0.42 0.42"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="iron-sound"
+        position="-10 3 -8"
+        sound="src: #iron-sample;
+        volume: 3;
+        autoplay: true;
+                       delay: 24000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <a-entity
+        image-portal="src: #clay-portal"
+        position="10 3 -8"
+        rotation="0 0 0"
+        scale="2 2 2"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#clay-model"
+        position="10 3 -8"
+        animation="property: rotation; to: 0 360 0 ; loop: true; easing: linear; dur: 80000"
+        scale="0.46 0.46 0.46"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="clay-sound"
+        position="10 3 -8"
+        sound="src: #clay-sample;
+        volume: 3;
+        autoplay: true;
+                       delay: 30000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <a-entity
+        image-portal="src: #concrete-portal"
+        position="0 3 -12.5"
+        rotation="0 0 0"
+        scale="1.8 1.8 1.8"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#concrete-model"
+        position="0 3 -12.5"
+                        rotation="35 0 25"
+        animation="property: rotation; to: 35 360 25; loop: true; easing: linear; dur: 80000"
+        scale="0.23 0.23 0.23"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="concrete-sound"
+        position="0 3 -12.5"
+        sound="src: #concrete-sample;
+        volume: 3;
+        autoplay: true;
+                       delay: 36000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <a-entity
+        image-portal="src: #granite-portal"
+        position="-12 3 3"
+        rotation="0 0 0"
+        scale="1.8 1.8 1.8"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#granite-model"
+        position="-12 3 3"
+        animation="property: rotation; to: 0 360 0 ; loop: true; easing: linear; dur: 80000"
+        scale="0.32 0.32 0.32"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="granite-sound"
+        position="-12 3 3"
+        sound="src: #granite-sample;
+        volume: 3;
+        autoplay: true;
+                       delay: 42000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <a-entity
+        image-portal="src: #petrol-portal"
+        position="12 3 3"
+        rotation="0 0 0"
+        scale="1.8 1.8 1.8"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#petrol-model"
+        position="12 2.34 3"
+        animation="property: rotation; to: 0 360 0 ; loop: true; easing: linear; dur: 80000"
+        scale="0.36 0.36 0.36"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="petrol-sound"
+        position="12 3 3"
+        sound="src: #petrol-sample;
+        volume: 3;
+        autoplay: true;
+                       delay: 48000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <a-entity
+        image-portal="src: #sandstone-portal"
+        position="-5.5 3 11.5"
+        rotation="0 0 0"
+        scale="1.8 1.8 1.8"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#sandstone-model"
+        position="-5.5 3 11.5"
+        animation="property: rotation; to: 0 360 0 ; loop: true; easing: linear; dur: 80000"
+        scale="0.45 0.45 0.45"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="sandstone-sound"
+        position="-5.5 3 11.5"
+        sound="src: #sandstone-sample;
+        volume: 1.8;
+        autoplay: true;
+                       delay: 54000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <a-entity
+        image-portal="src: #steel-portal"
+        position="0 3 4"
+        rotation="0 0 0"
+        scale="1.8 1.8 1.8"
+        animation="property: rotation; to: 0 -360 0 ; loop: true; easing: linear; dur: 800000"
+        renderOrder="0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#steel-model"
+        position="0 3 4"
+        animation="property: rotation; to: 35 360 45 ; loop: true; easing: linear; dur: 80000"
+        rotation="35 0 45"
+        scale="0.3 0.3 0.3"
+      ></a-entity>
+
+      <a-entity
+        on="start"
+        id="steel-sound"
+        position="0 3 4"
+        sound="src: #steel-sample;
+        volume: 2.5;
+        autoplay: true;
+                       delay: 60000;
+        loop: true;       
+        refDistance: 1.5;
+        rolloffFactor: 12"
+      >
+      </a-entity>
+
+      <!--    <a-entity
+        on="start"
+        id="sandstone-sound"
+        position="0 3 -5"
+        sound="src: #sound-1;
+        volume: 1;
+        autoplay: true;
+        loop: true;       
+        refDistance: 9;
+        rolloffFactor: 5"
+      >
+      </a-entity> -->
+
+      <a-sky color="#000000"></a-sky>
+    </a-scene>
+
+    <script defer>
+      document.querySelector("#btn-start").onclick = () => {
+        document.querySelector("#start-screen").classList.add("hidden");
+        document.querySelector("#sandstone-sound").emit("start");
+      };
+    </script>
+
+
+  </body>
+</html>
